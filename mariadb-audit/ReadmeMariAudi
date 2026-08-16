@@ -1,0 +1,18 @@
+# Database Security Audit & Brute Force Monitor
+
+Sistema de auditoría automatizada y detección de ataques de fuerza bruta sobre MariaDB/MySQL mediante Python. Diseñado bajo el principio de menor privilegio (RBAC) y preparado para ejecuciones en segundo plano con `cron`.
+
+## 🚀 Características
+* **Principio de Menor Privilegio:** Consultas realizadas exclusivamente mediante un usuario de solo lectura (`auditor`).
+* **Análisis por Ventana Temporal:** Inspección dinámica de registros (`--minutos`).
+* **Detección de Anomalías:** Alertas de fuerza bruta configurables por umbral (`--umbral`).
+* **Formatos de Salida Multi-canal:** Generación de logs estructurados (`.log`) y alertas exportadas en JSON (`.json`).
+* **Integración CLI / EnvVars:** Configurable mediante argumentos de terminal o variables de entorno.
+
+## 🛠️ Requisitos e Instalación
+
+1. Instalar dependencias:
+   ```bash
+   pip install pymysql
+
+Ejecutador> python3 auditoria_db.py --minutos 10 --umbral 2
