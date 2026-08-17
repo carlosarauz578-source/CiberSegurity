@@ -2,6 +2,17 @@
 
 Sistema de auditoría automatizada y detección de ataques de fuerza bruta sobre MariaDB/MySQL mediante Python. Diseñado bajo el principio de menor privilegio (RBAC) y preparado para ejecuciones en segundo plano con `cron`.
 
+---
+
+## 🎯 Alcance y Logros - Semana 5
+Este proyecto completa al 100% los objetivos prácticos correspondientes a la **Semana 5**:
+
+* **MySQL / MariaDB Avanzado:** Consultas SQL (`SELECT`, `INSERT`), filtrado condicional por intervalos de tiempo dinámicos (`NOW() - INTERVAL %s MINUTE`) e inserción de eventos en tiempo real.
+* **Gestión de Roles y Permisos (RBAC):** Configuración e implementación de usuario de solo lectura (`auditor`) para garantizar acceso seguro bajo el principio de menor privilegio.
+* **Mini-proyecto Final:** Implementación de la base de datos `seguridad` y la tabla `accesos`, integrada con detección de anomalías de fuerza bruta mediante scripts de Python y exportación de métricas.
+
+---
+
 ## 🚀 Características
 * **Principio de Menor Privilegio:** Consultas realizadas exclusivamente mediante un usuario de solo lectura (`auditor`).
 * **Análisis por Ventana Temporal:** Inspección dinámica de registros (`--minutos`).
@@ -9,10 +20,12 @@ Sistema de auditoría automatizada y detección de ataques de fuerza bruta sobre
 * **Formatos de Salida Multi-canal:** Generación de logs estructurados (`.log`) y alertas exportadas en JSON (`.json`).
 * **Integración CLI / EnvVars:** Configurable mediante argumentos de terminal o variables de entorno.
 
+---
+
 ## 🛠️ Requisitos e Instalación
 
 1. Instalar dependencias:
    ```bash
    pip install pymysql
 
-Ejecutador> python3 auditoria_db.py --minutos 10 --umbral 2
+Ejecutador> python3 auditoria_db.py --minutos 5 --umbral 2
