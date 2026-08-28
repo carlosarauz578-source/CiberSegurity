@@ -1,0 +1,10 @@
+# Requisitos del Sistema y Dependencias para el Módulo MySQL RBAC Audit
+# Sistema Operativo: Kali Linux / Debian-based
+
+# Paquetes del Sistema Requerdos:
+# - mariadb-server (>= 10.5)
+# - mariadb-client
+# - bash (>= 5.0)
+
+# Dependencias opcionales para automatización futura en Python:
+# mysql-connector-python>=8.0.0
