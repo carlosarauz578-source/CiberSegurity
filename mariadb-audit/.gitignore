@@ -1,0 +1,13 @@
+# Logs y alertas locales
+*.log
+*.json
+*.tmp
+
+# Entornos virtuales y caché de Python
+__pycache__/
+*.pyc
+.venv/
+env/
+
+# Archivos de entorno y credenciales
+.env
