@@ -1,8 +1,0 @@
-*.log
-*.gz
-*.csv
-*.txt
-!*.sh
-!README.md
-.env
-.env
