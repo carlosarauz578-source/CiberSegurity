@@ -13,6 +13,14 @@ from datetime import datetime
 import pymysql
 from pymysql.err import MySQLError, OperationalError
 
+# Determinar el directorio exacto donde vive este script y definir la carpeta logs
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+LOGS_DIR = os.path.join(BASE_DIR, "logs")
+os.makedirs(LOGS_DIR, exist_ok=True)
+
+DEFAULT_LOGFILE = os.path.join(LOGS_DIR, "auditoria.log")
+DEFAULT_JSONFILE = os.path.join(LOGS_DIR, "alertas.json")
+
 # Configuración de argumentos CLI
 parser = argparse.ArgumentParser(
     description="Sistema de Auditoría de Accesos y Detección de Fuerza Bruta en MariaDB",
@@ -20,8 +28,8 @@ parser = argparse.ArgumentParser(
 )
 parser.add_argument("--umbral", type=int, default=int(os.getenv("AUDIT_UMBRAL", 2)), help="Umbral de intentos fallidos para disparar alerta")
 parser.add_argument("--minutos", type=int, default=int(os.getenv("AUDIT_MINUTOS", 10)), help="Ventana de tiempo en minutos a inspeccionar")
-parser.add_argument("--logfile", type=str, default="auditoria.log", help="Ruta del archivo de log del sistema")
-parser.add_argument("--jsonfile", type=str, default="alertas.json", help="Ruta de exportación de alertas en JSON")
+parser.add_argument("--logfile", type=str, default=DEFAULT_LOGFILE, help="Ruta del archivo de log del sistema")
+parser.add_argument("--jsonfile", type=str, default=DEFAULT_JSONFILE, help="Ruta de exportación de alertas en JSON")
 parser.add_argument("--host", type=str, default=os.getenv("DB_HOST", "localhost"), help="Host de la base de datos")
 parser.add_argument("--user", type=str, default=os.getenv("DB_USER", "auditor"), help="Usuario de la base de datos")
 parser.add_argument("--password", type=str, default=os.getenv("DB_PASS", "password"), help="Contraseña de la base de datos")
@@ -78,12 +86,11 @@ def procesar_auditoria():
         )
 
         with conexion.cursor(pymysql.cursors.DictCursor) as cursor:
-            # Consulta optimizada filtrando por ventana de tiempo
             query = """
-                SELECT usuario, ip, fecha 
-                FROM accesos 
-                WHERE resultado = 'fallido' 
-                  AND fecha >= NOW() - INTERVAL %s MINUTE
+                SELECT usuario, ip_origen AS ip, fecha_hora AS fecha 
+                FROM registro_accesos 
+                WHERE 1=1 
+                  AND fecha_hora >= NOW() - INTERVAL %s MINUTE
             """
             cursor.execute(query, (args.minutos,))
             registros = cursor.fetchall()
@@ -101,7 +108,6 @@ def procesar_auditoria():
 
                 conteo_ips[ip] = conteo_ips.get(ip, 0) + 1
 
-        # Análisis de métricas y generación de alertas
         for ip, total in conteo_ips.items():
             if total >= args.umbral:
                 alerta_data = {
