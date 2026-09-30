@@ -1,0 +1,137 @@
+<svg width="540" height="560" viewBox="0 0 540 560" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradiente interior del triángulo central (Fondo gris oscuro/pizarra contrastante) -->
+    <linearGradient id="tri-space" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#090d16"/>
+    </linearGradient>
+
+    <!-- Recorte exacto para forma triangular pura en GitHub -->
+    <clipPath id="triangle-clip">
+      <polygon points="270,12 510,540 30,540"/>
+    </clipPath>
+
+    <!-- Filtros de brillo dinámico -->
+    <filter id="neon-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <style>
+    @keyframes blink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+    @keyframes glowPulse { 0% { opacity: 0.6; filter: drop-shadow(0 0 3px currentColor); } 50% { opacity: 1; filter: drop-shadow(0 0 10px currentColor); } 100% { opacity: 0.6; filter: drop-shadow(0 0 3px currentColor); } }
+    @keyframes floatElem { 0% { transform: translateY(0px); } 50% { transform: translateY(-4px); } 100% { transform: translateY(0px); } }
+    @keyframes nodePulse { 0% { r: 3.5; opacity: 0.7; } 50% { r: 6; opacity: 1; } 100% { r: 3.5; opacity: 0.7; } }
+    
+    .star-blink { animation: blink 1.5s ease-in-out infinite; }
+    .glowing-text { animation: glowPulse 2.5s ease-in-out infinite; }
+    .anim-float { animation: floatElem 3s ease-in-out infinite; transform-origin: center; }
+    
+    /* Conexiones con gran visibilidad */
+    .path-galactic { stroke: #38bdf8; stroke-dasharray: 3 4; opacity: 0.85; fill: none; stroke-width: 1.5; }
+    .path-celestial { stroke: #f43f5e; stroke-dasharray: 3 4; opacity: 0.85; fill: none; stroke-width: 1.5; }
+    .path-terrestrial { stroke: #4ade80; stroke-dasharray: 3 4; opacity: 0.85; fill: none; stroke-width: 1.5; }
+    
+    .node-orbit { animation: nodePulse 2s infinite; }
+  </style>
+
+  <!-- ================= CONEXIONES Y NODOS GALÁCTICOS EXTERIORES ================= -->
+  <!-- Órbita Celestial / Espacial -->
+  <path d="M 270,45 Q 150,25 80,75" class="path-celestial"/>
+  <path d="M 270,45 Q 390,25 460,75" class="path-celestial"/>
+  
+  <circle cx="80" cy="75" r="4" fill="#f43f5e" class="node-orbit"/>
+  <text x="65" y="65" fill="#f43f5e" font-family="monospace" font-size="7.5" font-weight="bold">CCSP / CISM (ISC²)</text>
+  
+  <circle cx="460" cy="75" r="4" fill="#f43f5e" class="node-orbit"/>
+  <text x="435" y="65" fill="#f43f5e" font-family="monospace" font-size="7.5" font-weight="bold">CyberWarFare Labs</text>
+
+  <!-- Órbita Intermedia / Atmósfera -->
+  <path d="M 180,180 Q 100,155 55,215" class="path-galactic"/>
+  <path d="M 360,180 Q 440,155 485,215" class="path-galactic"/>
+
+  <circle cx="55" cy="215" r="4" fill="#38bdf8" class="node-orbit"/>
+  <text x="25" y="205" fill="#38bdf8" font-family="monospace" font-size="7.5" font-weight="bold">HTB CPTS / Academy</text>
+
+  <circle cx="485" cy="215" r="4" fill="#38bdf8" class="node-orbit"/>
+  <text x="455" y="205" fill="#38bdf8" font-family="monospace" font-size="7.5" font-weight="bold">SBT: Threat Hunting / OSINT</text>
+
+  <!-- Órbita Terrestre / Edificios y Operaciones -->
+  <path d="M 150,340 Q 75,325 35,385" class="path-terrestrial"/>
+  <path d="M 390,340 Q 465,325 505,385" class="path-terrestrial"/>
+
+  <circle cx="35" cy="385" r="4" fill="#4ade80" class="node-orbit"/>
+  <text x="15" y="375" fill="#4ade80" font-family="monospace" font-size="7.5" font-weight="bold">NDG Linux / TryHackMe</text>
+
+  <circle cx="505" cy="385" r="4" fill="#4ade80" class="node-orbit"/>
+  <!-- CORRECCIÓN AQUÍ: Se ha reemplazado '&' por '&amp;' -->
+  <text x="460" y="375" fill="#4ade80" font-family="monospace" font-size="7.5" font-weight="bold">SBT: DFIR &amp; Vuln Mgmt</text>
+
+
+  <!-- ================= CONTENEDOR PIRAMIDAL CENTRAL (Recortado como Triángulo) ================= -->
+  <g clip-path="url(#triangle-clip)">
+    <!-- Fondo interno -->
+    <polygon points="270,12 510,540 30,540" fill="url(#tri-space)"/>
+
+    <!-- TÍTULO PRINCIPAL -->
+    <text x="270" y="42" fill="#00FFFF" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle" letter-spacing="1" class="glowing-text">CERT_HIERARCHY // 0-100</text>
+
+    <!-- ================= NIVEL 4: ORBITA / ÉLITE ================= -->
+    <g>
+      <polygon points="270,55 315,140 225,140" fill="#2c1035" stroke="#FF0055" stroke-width="1.5"/>
+      <circle cx="250" cy="75" r="1.5" fill="#FFF" class="star-blink"/>
+      <g class="anim-float">
+        <text x="270" y="96" font-size="15" text-anchor="middle">🛸</text>
+      </g>
+      <text x="270" y="115" fill="#FF0055" font-family="monospace" font-size="7" font-weight="bold" text-anchor="middle" class="glowing-text">CISSP / CISM (ISC²)</text>
+      <text x="330" y="100" fill="#FF0055" font-family="monospace" font-size="8" font-weight="bold" class="glowing-text">LVL 100</text>
+    </g>
+
+    <!-- ================= NIVEL 3: CIELO / AVANZADO ================= -->
+    <g>
+      <polygon points="223,143 317,143 360,245 180,245" fill="#351a08" stroke="#FF5500" stroke-width="1.5"/>
+      <text x="200" y="172" font-size="10" class="star-blink">✨</text>
+      <g class="anim-float">
+        <text x="270" y="182" font-size="15" text-anchor="middle">🎈</text>
+      </g>
+      <text x="330" y="172" font-size="10">🕊️</text>
+      <text x="270" y="202" fill="#FF5500" font-family="monospace" font-size="6.5" font-weight="bold" text-anchor="middle" class="glowing-text">OSCP / Advanced Offensive</text>
+      <text x="375" y="195" fill="#FF5500" font-family="monospace" font-size="8" font-weight="bold" class="glowing-text">LVL 90</text>
+    </g>
+
+    <!-- ================= NIVEL 2: EDIFICIOS / INTERMEDIO ================= -->
+    <g>
+      <polygon points="178,248 362,248 405,360 135,360" fill="#353008" stroke="#FFCC00" stroke-width="1.5"/>
+      <text x="190" y="302" font-size="13">🏢</text>
+      <g class="anim-float">
+        <text x="270" y="307" font-size="15" text-anchor="middle">🧗‍♂️</text>
+      </g>
+      <text x="340" y="302" font-size="13">🏢</text>
+      <text x="270" y="328" fill="#FFCC00" font-family="monospace" font-size="6.5" font-weight="bold" text-anchor="middle" class="glowing-text">AWS Arch / CEH / DefensityOne</text>
+      <text x="420" y="305" fill="#FFCC00" font-family="monospace" font-size="8" font-weight="bold" class="glowing-text">LVL 75</text>
+    </g>
+
+    <!-- ================= NIVEL 1: TRÁNSITO / OPERACIONAL ================= -->
+    <g>
+      <polygon points="133,363 407,363 450,470 90,470" fill="#08351d" stroke="#00FF66" stroke-width="1.5"/>
+      <text x="200" y="418" font-size="13">🛣️</text>
+      <g class="anim-float">
+        <text x="270" y="423" font-size="15" text-anchor="middle">🚶‍♂️</text>
+      </g>
+      <text x="270" y="443" fill="#00FF66" font-family="monospace" font-size="6.5" font-weight="bold" text-anchor="middle" class="glowing-text">CCNA / AZ-104 / TryHackMe / NDG Linux</text>
+      <text x="462" y="418" fill="#00FF66" font-family="monospace" font-size="8" font-weight="bold" class="glowing-text">LVL 50</text>
+    </g>
+
+    <!-- ================= NIVEL 0: TIERRA / FUNDAMENTOS ================= -->
+    <g>
+      <polygon points="88,473 452,473 510,540 30,540" fill="#0c253d" stroke="#00CCFF" stroke-width="1.5"/>
+      <text x="270" y="495" font-size="11" text-anchor="middle">🌱 🪨 🔑</text>
+      <text x="270" y="516" fill="#00CCFF" font-family="monospace" font-size="6.5" font-weight="bold" text-anchor="middle" class="glowing-text">Security+ / AZ-900 / Google Cyber / Microsoft Learn</text>
+    </g>
+  </g>
+
+  <!-- BORDE EXTERIOR NEÓN DEL TRIÁNGULO -->
+  <polygon points="270,12 510,540 30,540" fill="none" stroke="#00FFFF" stroke-width="3" filter="url(#neon-glow)"/>
+</svg>
