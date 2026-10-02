@@ -11,7 +11,7 @@ Su propósito es **vigilar intentos de autenticación fallidos en tiempo real** 
 - 🌍 **GeoIP**: identifica país y organización de las IPs sospechosas.  
 - 🔒 **Fail2Ban export**: genera reglas de firewall (`iptables`) para bloquear IPs automáticamente.  
 - 📢 **Alertas en vivo**: integración con Discord/Slack vía Webhooks.  
-- ⚡ **Umbral configurable**: define número de intentos y ventana de correlación.  
+- ⚡ **Umbral configurable**: define número de intentos y ventana de correlación...✝️✝️✝️🤍
 
 ---
 
